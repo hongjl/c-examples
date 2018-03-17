@@ -1,0 +1,91 @@
+#include<stdio.h>
+
+char get_first()//只获取第一个元素 
+{
+	int ch;
+	
+	ch = getchar();
+	//第一个字符后的字符都清除掉 
+	while(getchar() != '\n')
+		continue;  //清除字符
+		
+	return ch; 
+}
+
+
+
+
+int get_int()
+{
+	int input;
+	char ch;
+	
+	while(scanf("%d",&input) != 1)  //判断是否输入整数 
+	{
+		while((ch = getchar()) != '\n') //如果不是，将所输字符打印， 
+			putchar(ch);
+			
+		printf("is not an integer .\n");
+	}
+	
+	return input;
+ } 
+
+char get_choice()
+{
+	int ch;
+	
+	printf("enter the letter of your choice:\n");
+	printf("a.advice            b.bell\n");
+	printf("c.count             q.quit\n");
+	ch = get_first();
+	while((ch < 'a' || ch > 'c') && ch != 'q')
+	{
+		printf("please respond with a,b,c ,or q,\n");
+		ch = get_first();
+	}
+	
+	return ch;
+}
+
+
+
+void count()
+{
+	int n,i;
+	
+	printf("count how far? enter an integer:\n");
+	n = get_int();
+	for(i = 1;i <= n; i++)
+	{
+		printf("%d\n",i);
+	}
+	while(getchar() != '\n')//将之后的字符清除 
+		continue;
+}
+
+
+int main()
+{
+	int choice;
+	void count(void);
+	
+	while((choice = get_choice()) != 'q') //当输入部位q时 
+	{
+		switch(choice)
+		{
+			case 'a': printf("buy low ,sell high.\n");
+					  break; 
+			case 'b': putchar('\a');
+					  break; 
+			case 'c': count();
+					  break; 
+		  	default: printf("program error!\n");
+					  break; 
+		}
+		 
+	} 
+	printf("bye ,\n");
+
+	return 0; 
+ } 
